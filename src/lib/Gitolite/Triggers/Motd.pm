@@ -22,7 +22,7 @@ sub input {
 
 sub pre_git {
     my $repo = $_[1];
-    my $f    = "$rc{GL_REPO_BASE}/$repo.git/$file";
+    my $f    = "$rc{GL_REPO_BASE}/$repo/$file";
     print STDERR slurp($f) if -f $f;
 }
 

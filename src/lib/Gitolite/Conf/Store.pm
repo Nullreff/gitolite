@@ -189,9 +189,9 @@ sub new_repos {
         next if $repo =~ m(^\@|EXTCMD/);        # skip groups and fake repos
 
         # use gl-conf as a sentinel
-        hook_1($repo) if -d "$repo.git" and not -f "$repo.git/gl-conf";
+        hook_1($repo) if -d "$repo" and not -f "$repo/gl-conf";
 
-        if ( not -d "$repo.git" ) {
+        if ( not -d "$repo" ) {
             push @{ $rc{NEW_REPOS_CREATED} }, $repo;
             trigger( 'PRE_CREATE', $repo );
             new_repo($repo);
@@ -203,8 +203,8 @@ sub new_repo {
     my $repo = shift;
     trace( 3, $repo );
 
-    _mkdir("$repo.git");
-    _chdir("$repo.git");
+    _mkdir("$repo");
+    _chdir("$repo");
     _system("git init --bare >&2");
     _chdir( $rc{GL_REPO_BASE} );
     hook_1($repo);
@@ -216,7 +216,7 @@ sub new_wild_repo {
 
     trigger( 'PRE_CREATE', $repo, $user, $aa );
     new_repo($repo);
-    _print( "$repo.git/gl-creator", $user );
+    _print( "$repo/gl-creator", $user );
     trigger( 'POST_CREATE', $repo, $user, $aa );
 
     _chdir( $rc{GL_ADMIN_BASE} );
@@ -284,11 +284,11 @@ sub store_1 {
     # warning: writes and *deletes* it from %repos and %configs
     my ($repo) = shift;
     trace( 3, $repo );
-    return unless ( $repos{$repo} or $configs{$repo} ) and -d "$repo.git";
+    return unless ( $repos{$repo} or $configs{$repo} ) and -d "$repo";
 
     my ( %one_repo, %one_config );
 
-    open( my $compiled_fh, ">", "$repo.git/gl-conf" ) or return;
+    open( my $compiled_fh, ">", "$repo/gl-conf" ) or return;
 
     my $dumped_data = '';
     if ( $repos{$repo} ) {
@@ -365,12 +365,12 @@ sub store_common {
         }
 
         # propagate user-defined (custom) hooks to all repos
-        ln_sf( "$rc{LOCAL_CODE}/hooks/common", "*", "$repo.git/hooks" ) if $rc{LOCAL_CODE};
+        ln_sf( "$rc{LOCAL_CODE}/hooks/common", "*", "$repo/hooks" ) if $rc{LOCAL_CODE};
 
         # override/propagate gitolite defined hooks for all repos
-        ln_sf( "$rc{GL_ADMIN_BASE}/hooks/common", "*", "$repo.git/hooks" );
+        ln_sf( "$rc{GL_ADMIN_BASE}/hooks/common", "*", "$repo/hooks" );
         # override/propagate gitolite defined hooks for the admin repo
-        ln_sf( "$rc{GL_ADMIN_BASE}/hooks/gitolite-admin", "*", "$repo.git/hooks" ) if $repo eq 'gitolite-admin';
+        ln_sf( "$rc{GL_ADMIN_BASE}/hooks/gitolite-admin", "*", "$repo/hooks" ) if $repo eq 'gitolite-admin';
     }
 }
 

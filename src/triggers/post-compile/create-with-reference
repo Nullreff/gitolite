@@ -32,8 +32,8 @@ sub create_alternates {
     my %list = map { $_ => 1 } map { split } values %$refrepos;
     my @alts = keys %list;
     if ( @alts ) {
-        my $altlist = join "\n", map { "$RB/$_.git/objects" } @alts;
-        _print( "$RB/$pr.git/objects/info/alternates", "$altlist\n" );
+        my $altlist = join "\n", map { "$RB/$_/objects" } @alts;
+        _print( "$RB/$pr/objects/info/alternates", "$altlist\n" );
 
     }
 }

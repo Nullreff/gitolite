@@ -204,7 +204,7 @@ sub textfile {
     _die "'$h{dir}' does not exist" if $h{dir} and not -d $h{dir};
     if ($h{repo}) {
         Gitolite::Conf::Load::sanity($h{repo}, $REPONAME_PATT);
-        $h{dir} = "$rc{GL_REPO_BASE}/$h{repo}.git";
+        $h{dir} = "$rc{GL_REPO_BASE}/$h{repo}";
         _die "repo '$h{repo}' does not exist" if not -d $h{dir};
 
         my $umask = option( $h{repo}, 'umask' );

@@ -14,7 +14,7 @@ use Gitolite::Common;
 
 die "not meant to be run manually" unless $ARGV[6];
 
-my $ff = "$ENV{GL_REPO_BASE}/$ENV{GL_REPO}.git/gl-locks";
+my $ff = "$ENV{GL_REPO_BASE}/$ENV{GL_REPO}/gl-locks";
 exit 0 unless -f $ff;
 
 our %locks;

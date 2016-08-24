@@ -230,7 +230,7 @@ sub cleanup_conf_line {
         # receiving *any* arg invalidates cache)
         return \@phy_repos if ( @phy_repos and not @_ );
 
-        my $cmd = 'find . ' . ($Gitolite::Rc::rc{REPO_SYMLINKS} || '') . ' -name "*.git" -prune';
+        my $cmd = 'find . ' . ($Gitolite::Rc::rc{REPO_SYMLINKS} || '') . ' -name "*" -prune';
         for my $repo (`$cmd`) {
             chomp($repo);
             $repo =~ s/\.git$//;

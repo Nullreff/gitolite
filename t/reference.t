@@ -35,14 +35,14 @@ try "ADMIN_PUSH set1; !/FATAL/" or die text();
 
 try " # Verify files
     # source doesn't have alternates
-    ls $rb/source.git/objects/info/alternates;  !ok
+    ls $rb/source/objects/info/alternates;  !ok
 
     # fork has source as an alternate
-    ls $rb/fork.git/objects/info/alternates;   ok
-    cat $rb/fork.git/objects/info/alternates;  ok;  /$rb/source.git/objects/
+    ls $rb/fork/objects/info/alternates;   ok
+    cat $rb/fork/objects/info/alternates;  ok;  /$rb/source/objects/
 
     # multifork has multiple alternates
-    ls $rb/multifork.git/objects/info/alternates;   ok
-    cat $rb/multifork.git/objects/info/alternates;  ok;  /$rb/source.git/objects/
-                                                         /$rb/fork.git/objects/
+    ls $rb/multifork/objects/info/alternates;   ok
+    cat $rb/multifork/objects/info/alternates;  ok;  /$rb/source/objects/
+                                                         /$rb/fork/objects/
 ";

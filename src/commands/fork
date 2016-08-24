@@ -35,7 +35,7 @@ gitolite access -q "$to"   $GL_USER ^C any || die "'$to' already exists or you a
 # ----------------------------------------------------------------------
 
 # clone $from to $to
-git clone --bare -l $GL_REPO_BASE/$from.git $GL_REPO_BASE/$to.git
+git clone --bare -l $GL_REPO_BASE/$from $GL_REPO_BASE/$to
 [ $? -ne 0 ] && exit 1
 
 echo "$from forked to $to" >&2

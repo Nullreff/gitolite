@@ -43,13 +43,13 @@ try "
                                         /WARNING: expanding '\@g2'/
 
                                         !/attempting to set access.*i2/
-                                        /Initialized.*empty.*baz.git/
-                                        /Initialized.*empty.*foo.git/
-                                        /Initialized.*empty.*b1.git/
-                                        /Initialized.*empty.*i2.git/
-                                        !/Initialized.*empty.*b2.git/
-                                        !/Initialized.*empty.*i1.git/
-                                        !/Initialized.*empty.*bar.git/
+                                        /Initialized.*empty.*baz/
+                                        /Initialized.*empty.*foo/
+                                        /Initialized.*empty.*b1/
+                                        /Initialized.*empty.*i2/
+                                        !/Initialized.*empty.*b2/
+                                        !/Initialized.*empty.*i1/
+                                        !/Initialized.*empty.*bar/
 ";
 
 confreset;confadd '
@@ -66,8 +66,8 @@ try "ADMIN_PUSH set3; !/FATAL/" or die text();
 try "
                                         /WARNING: expanding '\@g2'/
                                         /WARNING: subconf 'g2' attempting to set access for h2/
-                                        /Initialized.*empty.*g2.git/
-                                        /Initialized.*empty.*i2.git/
+                                        /Initialized.*empty.*g2/
+                                        /Initialized.*empty.*i2/
 ";
 
 confreset;confadd '

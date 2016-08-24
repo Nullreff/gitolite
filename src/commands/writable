@@ -45,7 +45,7 @@ my $rb = $ENV{GL_REPO_BASE};
 if ( $repo eq '@all' ) {
     target( $ENV{HOME} );
 } else {
-    target("$rb/$repo.git");
+    target("$rb/$repo");
     target( $ENV{HOME} ) if $op eq 'status';
 }
 

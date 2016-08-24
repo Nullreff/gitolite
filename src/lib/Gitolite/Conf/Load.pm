@@ -259,7 +259,7 @@ sub repo_missing {
     my $repo = shift;
     sanity($repo);
 
-    return not -d "$rc{GL_REPO_BASE}/$repo.git";
+    return not -d "$rc{GL_REPO_BASE}/$repo";
 }
 
 # ----------------------------------------------------------------------
@@ -296,7 +296,7 @@ sub load_1 {
         trace( 1, "repo '$repo' missing" ) if $repo =~ $REPONAME_PATT;
         return;
     }
-    _chdir("$rc{GL_REPO_BASE}/$repo.git");
+    _chdir("$rc{GL_REPO_BASE}/$repo");
 
     if ( $repo eq $last_repo ) {
         $repos{$repo} = $one_repo{$repo};
@@ -435,7 +435,7 @@ sub user_roles {
     my %eg = map { $_ => 1 } @eg;
 
     my %ret   = ();
-    my $f     = "$rc{GL_REPO_BASE}/$repo.git/gl-perms";
+    my $f     = "$rc{GL_REPO_BASE}/$repo/gl-perms";
     my @roles = ();
     if ( -f $f ) {
         my $fh = _open( "<", $f );
@@ -490,7 +490,7 @@ sub creator {
     sanity($repo);
 
     return ( $ENV{GL_USER} || '' ) if repo_missing($repo);
-    my $f       = "$rc{GL_REPO_BASE}/$repo.git/gl-creator";
+    my $f       = "$rc{GL_REPO_BASE}/$repo/gl-creator";
     my $creator = '';
     chomp( $creator = slurp($f) ) if -f $f;
     return $creator;

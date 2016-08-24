@@ -65,18 +65,18 @@ try "
         /hello server-sam, this is gollum/
         /hello server-gollum, this is gollum/
         /hello admin, this is frodo/
-        /Initialized empty .*/gitolite-admin.git/
-        /Initialized empty .*/r1.git/
-        /Initialized empty .*/r2.git/
-        /Initialized empty .*/testing.git/
-        /Initialized empty .*/gitolite-admin.git/
-        /Initialized empty .*/r1.git/
-        /Initialized empty .*/r2.git/
-        /Initialized empty .*/testing.git/
-        /Initialized empty .*/gitolite-admin.git/
-        /Initialized empty .*/r1.git/
-        /Initialized empty .*/r2.git/
-        /Initialized empty .*/testing.git/
+        /Initialized empty .*/gitolite-admin/
+        /Initialized empty .*/r1/
+        /Initialized empty .*/r2/
+        /Initialized empty .*/testing/
+        /Initialized empty .*/gitolite-admin/
+        /Initialized empty .*/r1/
+        /Initialized empty .*/r2/
+        /Initialized empty .*/testing/
+        /Initialized empty .*/gitolite-admin/
+        /Initialized empty .*/r1/
+        /Initialized empty .*/r2/
+        /Initialized empty .*/testing/
 ";
 
 # ----------------------------------------------------------------------

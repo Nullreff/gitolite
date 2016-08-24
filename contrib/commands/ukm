@@ -205,7 +205,7 @@ END { my $err = $?; `/bin/rm -rf $TEMPDIR`; $? = $err; }
 
 sub cd_temp_clone {
     chomp($TEMPDIR);
-    hushed_git( "clone", "$rb/gitolite-admin.git", "$TEMPDIR/gitolite-admin" );
+    hushed_git( "clone", "$rb/gitolite-admin", "$TEMPDIR/gitolite-admin" );
     chdir("$TEMPDIR/gitolite-admin");
     my $ip = $ENV{SSH_CONNECTION};
     $ip =~ s/ .*//;

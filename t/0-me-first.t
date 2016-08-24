@@ -28,7 +28,7 @@ confreset;confadd '
 try "ADMIN_PUSH set1; !/FATAL/" or die text();
 
 try "
-                                            /Initialized empty Git repository in .*/aa.git//
+                                            /Initialized empty Git repository in .*/aa//
 
     # basic clone
     cd ..
@@ -80,7 +80,7 @@ try "
 
     # command
     glt perms u4 -c cc/bar/baz/frob + READERS u2;
-                                    ok;     /Initialized empty .*cc/bar/baz/frob.git/
+                                    ok;     /Initialized empty .*cc/bar/baz/frob/
 
     # path traversal
     glt ls-remote u4 file:///cc/dd/../ee

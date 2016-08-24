@@ -140,7 +140,7 @@ sub main {
     if ( $ENV{REQUEST_URI} ) {
         _system( "git", "http-backend" );
     } else {
-        my $repodir = "'$rc{GL_REPO_BASE}/$repo.git'";
+        my $repodir = "'$rc{GL_REPO_BASE}/$repo'";
         _system( "git", "shell", "-c", "$verb $repodir" );
     }
     trigger( 'POST_GIT', $repo, $user, $aa, 'any', $verb );
@@ -201,7 +201,7 @@ sub http_setup_die_handler {
         print $message;
         print STDERR $service;
         print STDERR $message;
-        exit 0;                                                             # if it's ok for die_webcgi in git.git/http-backend.c, it's ok for me ;-)
+        exit 0;                                                             # if it's ok for die_webcgi in git/http-backend.c, it's ok for me ;-)
       }
 }
 

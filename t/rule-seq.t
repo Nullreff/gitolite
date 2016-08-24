@@ -33,7 +33,7 @@ try "ADMIN_PUSH set1; !/FATAL/" or die text();
 try "
     cd ..
     glt clone u1 file:///u1/r1
-        /Initialized empty Git repository in .*/u1/r1.git//
+        /Initialized empty Git repository in .*/u1/r1//
     cd r1
     tc h-395
     glt push u1 origin master
@@ -61,7 +61,7 @@ try "
     cd ..
     rm -rf r1
     glt clone u3 file:///u3/r1
-        /Initialized empty Git repository in .*/u3/r1.git//
+        /Initialized empty Git repository in .*/u3/r1//
     cd r1
     tc p-274
     glt push u3 origin master

@@ -16,7 +16,7 @@ shift
 
 repo=$1
 user=$2
-main=`git config --file $GL_REPO_BASE/$repo.git/config --get gitolite.partialCopyOf`;
+main=`git config --file $GL_REPO_BASE/$repo/config --get gitolite.partialCopyOf`;
 [ -z "$main" ] && exit 0
 
 # "we", "our repo"  =>  the partial copy
@@ -26,16 +26,16 @@ cd $GL_REPO_BASE/$main.git
 
 for ref in `git for-each-ref refs/heads '--format=%(refname)'`
 do
-    cd $GL_REPO_BASE/$repo.git
+    cd $GL_REPO_BASE/$repo
 
     gitolite access -q $repo $user R $ref &&
-    git fetch -f $GL_REPO_BASE/$main.git $ref:$ref
+    git fetch -f $GL_REPO_BASE/$main $ref:$ref
 done
 
 export GL_BYPASS_ACCESS_CHECKS=1
 
 # remove all refs not in main or accessible
-cd $GL_REPO_BASE/$repo.git
+cd $GL_REPO_BASE/$repo
 
 for ref in `git for-each-ref refs/heads refs/tags '--format=%(refname)'`
 do
@@ -47,11 +47,11 @@ do
         continue
     fi
 
-    git push -f $GL_REPO_BASE/$repo.git :$ref || die "FATAL: failed to delete $ref"
+    git push -f $GL_REPO_BASE/$repo :$ref || die "FATAL: failed to delete $ref"
 done
 
 # remove all tags no longer reachable
-cd $GL_REPO_BASE/$repo.git
+cd $GL_REPO_BASE/$repo
 
 for ref in `git for-each-ref refs/tags '--format=%(refname)'`
 do
@@ -63,7 +63,7 @@ do
            continue 2
        fi
     done
-    git push -f $GL_REPO_BASE/$repo.git :$ref || die "FATAL: failed to delete $ref"
+    git push -f $GL_REPO_BASE/$repo :$ref || die "FATAL: failed to delete $ref"
 done
 
 exit 0

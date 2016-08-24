@@ -42,8 +42,8 @@ put   "conf/fragments/u1r.conf", '
 
 try "ADMIN_PUSH set1; !/FATAL/" or die text();
 try "
-        /Initialized empty Git repository in .*/r1a.git//
-        /Initialized empty Git repository in .*/r1b.git//
+        /Initialized empty Git repository in .*/r1a//
+        /Initialized empty Git repository in .*/r1b//
 ";
 
 # u1 push u1r pass

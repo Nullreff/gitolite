@@ -64,23 +64,23 @@ try "ADMIN_PUSH set1; !/FATAL/" or die text();
 my $rb = `gitolite query-rc -n GL_REPO_BASE`;
 try "
     cd $rb;                             ok
-    egrep foo\\|bar *.git/config
+    egrep foo\\|bar */config
 ";
 $t = join("\n", sort (lines()));
 
-cmp $t, 'bar.git/config:	bar = one
-bar.git/config:	bare = true
-bar.git/config:[foo]
-foo.git/config:	bar = f1
-foo.git/config:	bare = true
-foo.git/config:[foo]
-frob.git/config:	bar = dft
-frob.git/config:	bare = true
-frob.git/config:[foo]
-gitolite-admin.git/config:	bare = true
-testing.git/config:	bar = dft
-testing.git/config:	bare = true
-testing.git/config:[foo]';
+cmp $t, 'bar/config:	bar = one
+bar/config:	bare = true
+bar/config:[foo]
+foo/config:	bar = f1
+foo/config:	bare = true
+foo/config:[foo]
+frob/config:	bar = dft
+frob/config:	bare = true
+frob/config:[foo]
+gitolite-admin/config:	bare = true
+testing/config:	bar = dft
+testing/config:	bare = true
+testing/config:[foo]';
 
 try "cd $od; ok";
 
@@ -100,23 +100,23 @@ try "ADMIN_PUSH set1; !/FATAL/" or die text();
 
 try "
     cd $rb;                             ok
-    egrep foo\\|bar *.git/config
+    egrep foo\\|bar */config
 ";
 $t = join("\n", sort (lines()));
 
-cmp $t, 'bar.git/config:	bar = one
-bar.git/config:	bare = true
-bar.git/config:[foo]
-foo.git/config:	bar = f1
-foo.git/config:	bare = true
-foo.git/config:[foo]
-frob.git/config:	bar = none
-frob.git/config:	bare = true
-frob.git/config:[foo]
-gitolite-admin.git/config:	bare = true
-testing.git/config:	bar = dft
-testing.git/config:	bare = true
-testing.git/config:[foo]';
+cmp $t, 'bar/config:	bar = one
+bar/config:	bare = true
+bar/config:[foo]
+foo/config:	bar = f1
+foo/config:	bare = true
+foo/config:[foo]
+frob/config:	bar = none
+frob/config:	bare = true
+frob/config:[foo]
+gitolite-admin/config:	bare = true
+testing/config:	bar = dft
+testing/config:	bare = true
+testing/config:[foo]';
 
 try "cd $od; ok";
 
@@ -132,22 +132,22 @@ try "ADMIN_PUSH set1; !/FATAL/" or die text();
 
 try "
     cd $rb;                             ok
-    egrep foo\\|bar *.git/config
+    egrep foo\\|bar */config
 ";
 $t = join("\n", sort (lines()));
 
-cmp $t, 'bar.git/config:	bare = true
-bar.git/config:[foo]
-foo.git/config:	bar = f1
-foo.git/config:	bare = true
-foo.git/config:[foo]
-frob.git/config:	bar = none
-frob.git/config:	bare = true
-frob.git/config:[foo]
-gitolite-admin.git/config:	bare = true
-testing.git/config:	bar = dft
-testing.git/config:	bare = true
-testing.git/config:[foo]';
+cmp $t, 'bar/config:	bare = true
+bar/config:[foo]
+foo/config:	bar = f1
+foo/config:	bare = true
+foo/config:[foo]
+frob/config:	bar = none
+frob/config:	bare = true
+frob/config:[foo]
+gitolite-admin/config:	bare = true
+testing/config:	bar = dft
+testing/config:	bare = true
+testing/config:[foo]';
 
 try "cd $od; ok";
 
@@ -177,16 +177,16 @@ try "
 ";
 $t = join("\n", sort (lines()));
 
-cmp $t, './bar/u2/one.git/config:	bar = one
-./bar/u2/one.git/config:	bare = true
-./bar/u2/one.git/config:[foo]
-./foo.git/config:	bar = f1
-./foo.git/config:	bare = true
-./foo.git/config:[foo]
-./frob.git/config:	bar = f1
-./frob.git/config:	bare = true
-./frob.git/config:[foo]
-./gitolite-admin.git/config:	bare = true
-./testing.git/config:	bar = dft
-./testing.git/config:	bare = true
-./testing.git/config:[foo]';
+cmp $t, './bar/u2/one/config:	bar = one
+./bar/u2/one/config:	bare = true
+./bar/u2/one/config:[foo]
+./foo/config:	bar = f1
+./foo/config:	bare = true
+./foo/config:[foo]
+./frob/config:	bar = f1
+./frob/config:	bare = true
+./frob/config:[foo]
+./gitolite-admin/config:	bare = true
+./testing/config:	bar = dft
+./testing/config:	bare = true
+./testing/config:[foo]';

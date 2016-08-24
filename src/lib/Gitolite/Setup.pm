@@ -149,12 +149,12 @@ sub setup_gladmin {
     _mkdir( $rc{GL_REPO_BASE} );
     _chdir( $rc{GL_REPO_BASE} );
 
-    new_repo("gitolite-admin") if not -d "gitolite-admin.git";
+    new_repo("gitolite-admin") if not -d "gitolite-admin";
 
     # commit the admin files to the admin repo
 
     $ENV{GIT_WORK_TREE} = $rc{GL_ADMIN_BASE};
-    _chdir("$rc{GL_REPO_BASE}/gitolite-admin.git");
+    _chdir("$rc{GL_REPO_BASE}/gitolite-admin");
     _system("git add conf/gitolite.conf");
     _system("git add keydir") if $pubkey;
     tsh_try("git config --get user.email") or tsh_run( "git config user.email $ENV{USER}\@" . `hostname` );

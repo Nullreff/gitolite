@@ -24,7 +24,7 @@ my $RB = $rc{GL_REPO_BASE};
 for my $d (`gitolite list-phy-repos | gitolite access % daemon R any`) {
     my @F = split "\t", $d;
     if ($F[2] =~ /DENIED/) {
-        unlink "$RB/$F[0].git/$EO";
+        unlink "$RB/$F[0]/$EO";
     } else {
         textfile( file => $EO, repo => $F[0], text => "" );
     }

@@ -42,7 +42,7 @@ glt clone u4 file:///foo/u2/a12;        !ok;    /R any foo/u2/a12 u4 DENIED by f
 glt clone u4 file:///foo/u4/a1234;      !ok;    /R any foo/u4/a1234 u4 DENIED by fallthru/
 
 # u4 tries to create his own repo
-glt clone u4 file:///foo/u4/a12;        ok;     /Initialized empty Git repository in .*/foo/u4/a12.git//
+glt clone u4 file:///foo/u4/a12;        ok;     /Initialized empty Git repository in .*/foo/u4/a12//
                                                 /warning: You appear to have cloned an empty repository./
 
 # u4 push success

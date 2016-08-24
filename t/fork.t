@@ -28,7 +28,7 @@ try "
 
     # make the initial repo
     glt ls-remote u1 file:///foo/u1/u1a;ok;     gsh
-                                                /Initialized empty Git repository in .*/foo/u1/u1a.git/
+                                                /Initialized empty Git repository in .*/foo/u1/u1a/
     # vrc doesn't have the fork command
     glt fork u1 foo/u1/u1a foo/u1/u1a2; !ok;    /FATAL: unknown git/gitolite command: \\'fork/
 ";
@@ -55,7 +55,7 @@ try "cd ..";
 
 try "
     # now the fork succeeds
-    glt fork u1 foo/u1/u1a foo/u1/u1a2; ok;     /Cloning into bare repository '.*/foo/u1/u1a2.git'/
+    glt fork u1 foo/u1/u1a foo/u1/u1a2; ok;     /Cloning into bare repository '.*/foo/u1/u1a2'/
                                                 /foo/u1/u1a forked to foo/u1/u1a2/
 
     # now the actual testing starts
@@ -67,7 +67,7 @@ try "
     glt fork u1 foo/u1/u1a foo/u2/u1d;  !ok;    /'foo/u2/u1d' already exists or you are not allowed to create it/
 
     # no error
-    glt fork u1 foo/u1/u1a foo/u1/u1e;  ok;     /Cloning into bare repository '.*/foo/u1/u1e.git'/
+    glt fork u1 foo/u1/u1a foo/u1/u1e;  ok;     /Cloning into bare repository '.*/foo/u1/u1e'/
                                                 /warning: You appear to have cloned an empty repository/
                                                 /foo/u1/u1a forked to foo/u1/u1e/
     # both exist
@@ -78,12 +78,12 @@ try "
 
 my $t;
 try "cd $rb; find . -name gl-perms"; $t = md5sum(sort (lines())); cmp $t,
-'59b3a74b4d33c7631f08e75e7b60c7ce  ./foo/u1/u1a2.git/gl-perms
-59b3a74b4d33c7631f08e75e7b60c7ce  ./foo/u1/u1e.git/gl-perms
+'59b3a74b4d33c7631f08e75e7b60c7ce  ./foo/u1/u1a2/gl-perms
+59b3a74b4d33c7631f08e75e7b60c7ce  ./foo/u1/u1e/gl-perms
 ';
 
 try "cd $rb; find . -name gl-creator"; $t = md5sum(sort (lines())); cmp $t,
-'e4774cdda0793f86414e8b9140bb6db4  ./foo/u1/u1a.git/gl-creator
-346955ff2eadbf76e19373f07dd370a9  ./foo/u1/u1a2.git/gl-creator
-346955ff2eadbf76e19373f07dd370a9  ./foo/u1/u1e.git/gl-creator
+'e4774cdda0793f86414e8b9140bb6db4  ./foo/u1/u1a/gl-creator
+346955ff2eadbf76e19373f07dd370a9  ./foo/u1/u1a2/gl-creator
+346955ff2eadbf76e19373f07dd370a9  ./foo/u1/u1e/gl-creator
 ';

@@ -92,11 +92,11 @@ sub confreset {
     chdir("../gitolite-admin") or die "in `pwd`, could not cd ../g-a";
     system( "rm", "-rf", "conf" );
     mkdir("conf");
-    system("mv ~/repositories/gitolite-admin.git ~/repositories/.ga");
-    system("mv ~/repositories/testing.git        ~/repositories/.te");
-    system("find ~/repositories -name '*.git' |xargs rm -rf");
-    system("mv ~/repositories/.ga ~/repositories/gitolite-admin.git");
-    system("mv ~/repositories/.te ~/repositories/testing.git       ");
+    system("mv ~/repositories/gitolite-admin ~/repositories/.ga");
+    system("mv ~/repositories/testing        ~/repositories/.te");
+    system("find ~/repositories -name '*' |xargs rm -rf");
+    system("mv ~/repositories/.ga ~/repositories/gitolite-admin");
+    system("mv ~/repositories/.te ~/repositories/testing       ");
     put "|cut -c9- > conf/gitolite.conf", '
         repo    gitolite-admin
             RW+     =   admin

@@ -7,7 +7,7 @@ repo=$2
 url=$(gitolite git-config $repo gitolite-options.upstream.url)
 [ -z "$url" ] && exit 0     # exit if no url was specified
 
-cd $GL_REPO_BASE/$repo.git || exit 1
+cd $GL_REPO_BASE/$repo || exit 1
 
 [ "$1" != "fetch" ] && {
     nice=$(gitolite git-config $repo gitolite-options.upstream.nice)

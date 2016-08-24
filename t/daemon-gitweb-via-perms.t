@@ -33,22 +33,22 @@ my $h = $ENV{HOME};
 
 try "
     glt ls-remote u1 file:///bar/u1/try1
-    /Initialized empty Git repository in .*/bar/u1/try1.git/
+    /Initialized empty Git repository in .*/bar/u1/try1/
 
     find . -name git-daemon-export-ok
-    /testing.git/git-daemon-export-ok/
+    /testing/git-daemon-export-ok/
 
     cat $h/projects.list
-    /testing.git/
+    /testing/
 
     glt ls-remote u1 file:///bar/u1/try2
-    /Initialized empty Git repository in .*/bar/u1/try2.git/
+    /Initialized empty Git repository in .*/bar/u1/try2/
 
     find $h/repositories -name git-daemon-export-ok
-    /testing.git/git-daemon-export-ok/
+    /testing/git-daemon-export-ok/
 
     cat $h/projects.list
-    /testing.git/
+    /testing/
 
     glt perms u1 bar/u1/try1 + READERS daemon
     !/./
@@ -57,11 +57,11 @@ try "
     /READERS daemon/
 
     find $h/repositories -name git-daemon-export-ok
-    /repositories/testing.git/git-daemon-export-ok/
-    /repositories/bar/u1/try1.git/git-daemon-export-ok/
+    /repositories/testing/git-daemon-export-ok/
+    /repositories/bar/u1/try1/git-daemon-export-ok/
 
     cat $h/projects.list
-    /testing.git/
+    /testing/
 
     glt perms u1 bar/u1/try2 + READERS gitweb
 
@@ -69,10 +69,10 @@ try "
     /READERS gitweb/
 
     find $h/repositories -name git-daemon-export-ok
-    /testing.git/git-daemon-export-ok/
-    /bar/u1/try1.git/git-daemon-export-ok/
+    /testing/git-daemon-export-ok/
+    /bar/u1/try1/git-daemon-export-ok/
 
     cat $h/projects.list
-    /bar/u1/try2.git/
-    /testing.git/
+    /bar/u1/try2/
+    /testing/
 ";

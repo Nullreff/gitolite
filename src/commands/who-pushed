@@ -34,7 +34,7 @@ $ENV{GL_USER} and ( can_read($repo) or die "no read permissions on '$repo'" );
 
 # ----------------------------------------------------------------------
 
-my $repodir = "$ENV{GL_REPO_BASE}/$repo.git";
+my $repodir = "$ENV{GL_REPO_BASE}/$repo";
 chdir $repodir or die "repo '$repo' missing";
 
 my @logfiles = reverse glob("$logdir/*");
@@ -67,7 +67,7 @@ sub migrate {
     chdir $ENV{GL_REPO_BASE};
     my @repos = `gitolite list-phy-repos`; chomp @repos;
 
-    my $count = scalar( grep { -f "$_.git/gl-log" } @repos );
+    my $count = scalar( grep { -f "$_/gl-log" } @repos );
     if ( $count and ( $_[1] || '' ) ne '--force' ) {
         say2 "$count repo(s) already have gl-log files.  To confirm overwriting, please re-run as:";
         say2 "\tgitolite who-pushed --migrate --force";
@@ -76,7 +76,7 @@ sub migrate {
     }
 
     foreach my $r (@repos) {
-        _print("$r.git/gl-log", '');
+        _print("$r/gl-log", '');
     }
 
     my %repo_exists = map { $_ => 1 } @repos;
@@ -110,7 +110,7 @@ sub gen_gl_log {
 }
 sub flush_gl_log {
     while (my ($r, $l) = each %gl_log_lines_buffer) {
-        open my $fh, ">>", "$r.git/gl-log" or _die "open flush_gl_log failed: $!";
+        open my $fh, ">>", "$r/gl-log" or _die "open flush_gl_log failed: $!";
         print $fh $l;
         close $fh;
     }

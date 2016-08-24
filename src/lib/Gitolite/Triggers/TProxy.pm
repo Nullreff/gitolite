@@ -89,7 +89,7 @@ sub input {
     _die "invalid repo name: '$repo'" if $repo !~ $REPONAME_PATT;
 
     # nothing to do if the repo exists locally
-    return if -d "$ENV{GL_REPO_BASE}/$repo.git";
+    return if -d "$ENV{GL_REPO_BASE}/$repo";
 
     my $user = shift @ARGV;
     # redirect to upstream

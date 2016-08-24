@@ -32,12 +32,12 @@ confreset;confadd '
 
 try "ADMIN_PUSH info; !/FATAL/" or die text();
 try "
-                                        /Initialized.*empty.*cc.git/
-                                        /Initialized.*empty.*p4.git/
-                                        /Initialized.*empty.*git.git/
-                                        /Initialized.*empty.*gitolite.git/
-                                        /Initialized.*empty.*gitolite3.git/
-                                        /Initialized.*empty.*t3.git/
+                                        /Initialized.*empty.*cc/
+                                        /Initialized.*empty.*p4/
+                                        /Initialized.*empty.*git/
+                                        /Initialized.*empty.*gitolite/
+                                        /Initialized.*empty.*gitolite3/
+                                        /Initialized.*empty.*t3/
 ";
 
 try "gitolite list-groups"; cmp

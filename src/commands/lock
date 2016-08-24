@@ -39,7 +39,7 @@ my $file = shift || '';
 usage() if $op ne 'list' and not $file;
 
 _chdir( $ENV{GL_REPO_BASE} );
-_chdir("$repo.git");
+_chdir("$repo");
 
 _die "aborting, file '$file' not found in any branch" if $file and not object_exists($file);
 
@@ -73,7 +73,7 @@ sub object_exists {
 }
 
 # ----------------------------------------------------------------------
-# everything below assumes we have already chdir'd to "$repo.git".  Also, $ff
+# everything below assumes we have already chdir'd to "$repo".  Also, $ff
 # is used as a global.
 
 sub f_lock {

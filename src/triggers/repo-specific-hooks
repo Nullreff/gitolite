@@ -56,7 +56,7 @@ for my $repo (keys %repo_hooks) {
     for my $hook (keys %{ $repo_hooks{$repo} }) {
         my @codes = @{ $repo_hooks{$repo}{$hook} };
 
-        my $dst = "$repo.git/hooks/$hook";
+        my $dst = "$repo/hooks/$hook";
         unlink( glob("$dst.*") );
 
         my $counter = "h00";
@@ -67,7 +67,7 @@ for my $repo (keys %repo_hooks) {
             }
 
             my $src = $rc{LOCAL_CODE} . "/hooks/repo-specific/$code";
-            my $dst = "$repo.git/hooks/$hook.$counter-$code";
+            my $dst = "$repo/hooks/$hook.$counter-$code";
             unless ( -x $src ) {
                 _warn "repo-specific-hooks: '$src' doesn't exist or is not executable";
                 next;

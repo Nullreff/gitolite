@@ -91,5 +91,5 @@ unless ($op eq '--list') {
 # ----------------------------------------------------------------------
 # go!
 
-_chdir("$rc{GL_REPO_BASE}/$repo.git");
+_chdir("$rc{GL_REPO_BASE}/$repo");
 _system( "git", "config", @ARGV );

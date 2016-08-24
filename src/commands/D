@@ -73,15 +73,15 @@ then
     gitolite query-rc -q D_DISABLE_RM && die "sorry, 'unlock' and 'rm' are disabled"
 
     owner_or_die
-    [ -f $repo.git/gl-rm-ok ] || die "'$repo' is locked!"
-    rm -rf $repo.git
+    [ -f $repo/gl-rm-ok ] || die "'$repo' is locked!"
+    rm -rf $repo
     echo "'$repo' is now gone!"
 
 elif [ "$cmd" = "lock" ]
 then
 
     owner_or_die
-    rm -f $repo.git/gl-rm-ok
+    rm -f $repo/gl-rm-ok
     echo "'$repo' is now locked"
 
 elif [ "$cmd" = "unlock" ]
@@ -90,7 +90,7 @@ then
     gitolite query-rc -q D_DISABLE_RM && die "sorry, 'unlock' and 'rm' are disabled"
 
     owner_or_die
-    touch $repo.git/gl-rm-ok
+    touch $repo/gl-rm-ok
     echo "'$repo' is now unlocked"
 
 elif [ "$cmd" = "trash" ]
@@ -99,7 +99,7 @@ then
     owner_or_die
     mkdir -p $TRASH_CAN/$repo 2>/dev/null || die "failed creating directory in trashcan"
     [ -d $TRASH_CAN/$repo/$TRASH_SUFFIX ] && die "try again in a few seconds..."
-    mv $repo.git $TRASH_CAN/$repo/$TRASH_SUFFIX
+    mv $repo $TRASH_CAN/$repo/$TRASH_SUFFIX
     echo "'$repo' moved to trashcan"
 
 elif [ "$cmd" = "list-trash" ]
@@ -122,8 +122,8 @@ then
 
     cd $TRASH_CAN
     realrepo=`dirname $repo`
-    [ -d $RB/$realrepo.git ] && die "'$realrepo' already exists"
-    mv $repo $RB/$realrepo.git
+    [ -d $RB/$realrepo ] && die "'$realrepo' already exists"
+    mv $repo $RB/$realrepo
     echo "'$repo' restored to '$realrepo'"
 
 else

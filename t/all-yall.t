@@ -34,7 +34,7 @@ try "
 
     glt clone u3 file:///dev/wild1
                 /Cloning into 'wild1'.../
-                /Initialized empty Git repository in .*/dev/wild1.git//
+                /Initialized empty Git repository in .*/dev/wild1//
                 /warning: You appear to have cloned an empty repository./
 
     cd wild1
@@ -81,9 +81,9 @@ try "
     perl s,$rb/,,g
 ";
 
-cmp 'bar.git/git-daemon-export-ok
-dev/wild1.git/git-daemon-export-ok
-foo.git/git-daemon-export-ok
-gitolite-admin.git/git-daemon-export-ok
-testing.git/git-daemon-export-ok
+cmp 'bar/git-daemon-export-ok
+dev/wild1/git-daemon-export-ok
+foo/git-daemon-export-ok
+gitolite-admin/git-daemon-export-ok
+testing/git-daemon-export-ok
 ';

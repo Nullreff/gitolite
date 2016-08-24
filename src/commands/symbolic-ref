@@ -22,10 +22,9 @@ usage() { perl -lne 'print substr($_, 2) if /^# Usage/../^$/' < $0; exit 1; }
 
 # ----------------------------------------------------------------------
 repo=$1; shift
-repo=${repo%.git}
 gitolite access -q "$repo" $GL_USER W any || die You are not authorised
 
 # change head
-cd $GL_REPO_BASE/$repo.git
+cd $GL_REPO_BASE/$repo
 
 git symbolic-ref "$@"

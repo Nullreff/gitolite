@@ -37,7 +37,7 @@ _die "you are not authorized" unless
 #>>>
 
 if ( $op eq 'rm' ) {
-    unlink "$rc{GL_REPO_BASE}/$repo.git/$file";
+    unlink "$rc{GL_REPO_BASE}/$repo/$file";
 } elsif ( $op eq 'set' ) {
     textfile( file => $file, repo => $repo, prompt => '' );
 } else {

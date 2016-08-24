@@ -39,8 +39,8 @@ sub post_create {
     $umask = oct($umask);
     my $mode = "0" . sprintf( "%o", $umask ^ 0777 );
 
-    system("chmod -R $mode $repo.git >&2");
-    system("find $repo.git -type f -exec chmod a-x '{}' \\;");
+    system("chmod -R $mode $repo >&2");
+    system("find $repo -type f -exec chmod a-x '{}' \\;");
 }
 
 sub pre_git {

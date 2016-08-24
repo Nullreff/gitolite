@@ -58,7 +58,7 @@
 #       RB=$(gitolite query-rc GL_REPO_BASE)
 #       for r in $(gitolite list-phy-repos)
 #       do
-#           cd $RB/$repo.git
+#           cd $RB/$repo
 #           unset GL_OPTIONS_GPC_PENDING    # if it is set higher up
 #           hooks/post-receive post_process
 #       done

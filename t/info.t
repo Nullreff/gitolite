@@ -32,9 +32,9 @@ confreset;confadd '
 
 try "ADMIN_PUSH info; !/FATAL/" or die text();
 try "
-                                        /Initialized.*empty.*t1.git/
-                                        /Initialized.*empty.*t2.git/
-                                        /Initialized.*empty.*t3.git/
+                                        /Initialized.*empty.*t1/
+                                        /Initialized.*empty.*t2/
+                                        /Initialized.*empty.*t3/
 ";
 
 # GS == greeting string

@@ -62,6 +62,6 @@ try "
     find $rb -name git-daemon-export-ok | sort
     perl s,$rb/,,g
 ";
-cmp 'c.git/git-daemon-export-ok
-testing.git/git-daemon-export-ok
+cmp 'c/git-daemon-export-ok
+testing/git-daemon-export-ok
 '

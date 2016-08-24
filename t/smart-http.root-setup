@@ -49,7 +49,7 @@ export GITOLITE_HTTP_HOME=$PWD/gitolite-home
 
 # get the gitolite sources
 cd gitolite-home
-git clone /tmp/gitolite.git gitolite-source
+git clone /tmp/gitolite gitolite-source
 # NOTE: I use a bare repo in /tmp for convenience; you'd use
 # 'git://github.com/sitaramc/gitolite'
 

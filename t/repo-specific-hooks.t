@@ -66,16 +66,16 @@ exit 1
 ";
 
 # Place a existing hooks in repos
-put "$rb/foo.git/hooks/post-recieve", $failing_hook;
-put "$rb/bar.git/hooks/pre-recieve", $failing_hook;
-put "$rb/baz.git/hooks/post-update", $failing_hook;
-put "$rb/frob.git/hooks/post-update", $failing_hook;
+put "$rb/foo/hooks/post-recieve", $failing_hook;
+put "$rb/bar/hooks/pre-recieve", $failing_hook;
+put "$rb/baz/hooks/post-update", $failing_hook;
+put "$rb/frob/hooks/post-update", $failing_hook;
 
 try "# Verify hooks
-    ls -l $rb/foo.git/hooks/*;  ok;     !/post-receive -. .*local/hooks/multi-hook-driver/
-    ls -l $rb/bar.git/hooks/*;  ok;     !/pre-receive -. .*local/hooks/multi-hook-driver/
-    ls -l $rb/baz.git/hooks/*;  ok;     !/post-update -. .*local/hooks/multi-hook-driver/
-    ls -l $rb/frob.git/hooks/*; ok;     !/post-update -. .*local/hooks/multi-hook-driver/
+    ls -l $rb/foo/hooks/*;  ok;     !/post-receive -. .*local/hooks/multi-hook-driver/
+    ls -l $rb/bar/hooks/*;  ok;     !/pre-receive -. .*local/hooks/multi-hook-driver/
+    ls -l $rb/baz/hooks/*;  ok;     !/post-update -. .*local/hooks/multi-hook-driver/
+    ls -l $rb/frob/hooks/*; ok;     !/post-update -. .*local/hooks/multi-hook-driver/
 ";
 
 confreset;confadd '
@@ -105,20 +105,20 @@ confreset;confadd '
 try "ADMIN_PUSH repo-specific-hooks-1; !/FATAL/" or die text();
 
 try "# Verify hooks
-    ls -l $rb/foo.git/hooks/*;  ok;     /post-receive.h00-first/
+    ls -l $rb/foo/hooks/*;  ok;     /post-receive.h00-first/
                                        !/post-receive.h01/
                                         /post-receive -. .*local/hooks/multi-hook-driver/
-    ls -l $rb/bar.git/hooks/*;  ok;     /pre-receive.h00-first/
+    ls -l $rb/bar/hooks/*;  ok;     /pre-receive.h00-first/
                                         /pre-receive.h01-second/
                                         /pre-receive -. .*local/hooks/multi-hook-driver/
-    ls -l $rb/baz.git/hooks/*;  ok;     /post-receive.h00-first/
+    ls -l $rb/baz/hooks/*;  ok;     /post-receive.h00-first/
                                         /post-update.h00-first/
                                         /post-update.h01-second/
                                         /post-update -. .*local/hooks/multi-hook-driver/
-    ls -l $rb/frob.git/hooks/*; ok;     /post-receive.h00-second/
+    ls -l $rb/frob/hooks/*; ok;     /post-receive.h00-second/
                                         /post-receive.h01-first/
                                         /post-receive -. .*local/hooks/multi-hook-driver/
-    ls -l $rb/gitolite-admin.git/hooks/*
+    ls -l $rb/gitolite-admin/hooks/*
                                 ok;     /post-receive.h/
                                         /post-receive -. .*local/hooks/multi-hook-driver/
                                        !/post-update -. .*local/hooks/multi-hook-driver/
@@ -191,10 +191,10 @@ confreset;confadd '
 try "ADMIN_PUSH repo-specific-hooks-02; !/FATAL/" or die text();
 
 try "
-    ls $rb/foo.git/hooks/*;  ok;    !/post-receive/
-    ls $rb/bar.git/hooks/*;  ok;    !/pre-receive.*first/
+    ls $rb/foo/hooks/*;  ok;    !/post-receive/
+    ls $rb/bar/hooks/*;  ok;    !/pre-receive.*first/
                                      /pre-receive.h00-second/
-    ls $rb/baz.git/hooks/*;  ok;    !/post-receive/
+    ls $rb/baz/hooks/*;  ok;    !/post-receive/
                                     !/post-update.*first/
                                      /post-update.h00-second/
 ";

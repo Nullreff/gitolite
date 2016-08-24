@@ -74,7 +74,7 @@ sub pre_git {
     details($repo);
 
     # print mirror status if at least one slave status file is present
-    print_status( $repo ) if not $rc{HUSH_MIRROR_STATUS} and $mode ne 'local' and glob("$rc{GL_REPO_BASE}/$repo.git/gl-slave-*.status");
+    print_status( $repo ) if not $rc{HUSH_MIRROR_STATUS} and $mode ne 'local' and glob("$rc{GL_REPO_BASE}/$repo/gl-slave-*.status");
 
     # we don't deal with any reads.  Note that for pre-git this check must
     # happen *after* getting details, to give mode() a chance to die on "known
@@ -235,7 +235,7 @@ sub push_to_slaves {
     my $u = $ENV{GL_USER};
     delete $ENV{GL_USER};    # why?  see src/commands/mirror
 
-    my $lb = "$ENV{GL_REPO_BASE}/$repo.git/.gl-mirror-lock";
+    my $lb = "$ENV{GL_REPO_BASE}/$repo/.gl-mirror-lock";
     for my $s ( sort keys %slaves ) {
         trace( 1, "push_to_slaves: skipping self" ), next if $s eq $hn;
         system("gitolite 1plus1 $lb.$s gitolite mirror push $s $repo </dev/null >/dev/null 2>&1 &") if $slaves{$s} eq 'async';

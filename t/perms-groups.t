@@ -31,7 +31,7 @@ try "
 
     # u1 auto-creates a repo
     glt ls-remote u1 file:///bar/u1/try1
-        /Initialized empty Git repository in .*/bar/u1/try1.git//
+        /Initialized empty Git repository in .*/bar/u1/try1//
     # default permissions for u2 and u4
     glt info u1 -lc
         /R W *\tbar/u1/try1\tu1/

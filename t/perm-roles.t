@@ -36,7 +36,7 @@ cd ..
 # make foo/u1/u1r1
 rm -rf ~/td/u1r1
 glt clone u1 file:///foo/u1/u1r1
-        /Initialized empty Git repository in .*/foo/u1/u1r1.git//
+        /Initialized empty Git repository in .*/foo/u1/u1r1//
 cd u1r1
 
 # CREATOR can push

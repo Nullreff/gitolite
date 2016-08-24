@@ -26,7 +26,7 @@ try "ADMIN_PUSH set1; !/FATAL/" or die text();
 try "
     cd ..
     glt clone u1 file:///foo/u1/bar;    ok
-        /Initialized empty Git repository in .*/foo/u1/bar.git//
+        /Initialized empty Git repository in .*/foo/u1/bar//
 
     cd bar
     tc p-906
@@ -70,7 +70,7 @@ try "
     cd ..
     rm -rf bar u2bar
     glt clone u1 file:///foo/u1/bar;    ok
-        /Initialized empty Git repository in .*/foo/u1/bar.git//
+        /Initialized empty Git repository in .*/foo/u1/bar//
 
     cd bar
     tc p-906
@@ -99,12 +99,12 @@ try "
 
     # auto-create using perms fail
     echo READERS u5 | glt perms u4 -c foo/u4/baz
-        !/Initialized empty Git repository in .*/foo/u4/baz.git/
+        !/Initialized empty Git repository in .*/foo/u4/baz/
         /FATAL: repo does not exist, or you are not authorised/
 
     # auto-create using perms
     echo READERS u2 | glt perms u1 -c foo/u1/baz
-        /Initialized empty Git repository in .*/foo/u1/baz.git/
+        /Initialized empty Git repository in .*/foo/u1/baz/
 
     glt perms u1 foo/u1/baz -l
         /READERS u2/

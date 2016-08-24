@@ -20,7 +20,7 @@ my ( $trigger, $repo, $dummy, $op ) = @ARGV;
 exit 0 unless $trigger eq 'POST_GIT' or $trigger eq 'POST_CREATE';
 exit 0 if     $trigger eq 'POST_GIT' and $op ne 'W';
 
-chdir("$rc{GL_REPO_BASE}/$repo.git") or _die "chdir failed: $!\n";
+chdir("$rc{GL_REPO_BASE}/$repo") or _die "chdir failed: $!\n";
 
 my %config = config( $repo, "gitolite-options\\.mirror\\.extslave" );
 for my $slave ( values %config ) {
@@ -161,7 +161,7 @@ RESTORE
 3.  Clone the admin repo from one of your backup servers to some temp dir.  In
     our example,
 
-        git clone /tmp/he1/gitolite-admin.git old-ga
+        git clone /tmp/he1/gitolite-admin old-ga
 
 4.  'cd' to that clone and force push to your *new* admin repo:
 

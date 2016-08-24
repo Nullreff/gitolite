@@ -58,7 +58,7 @@ if ( $cmd eq 'push' ) {
 
     trace( 1, "TID=$tid host=$host repo=$repo", "gitolite mirror push started" );
     _chdir( $rc{GL_REPO_BASE} );
-    _chdir("$repo.git");
+    _chdir("$repo");
 
     if ( -f "gl-creator" ) {
         # try to propagate the wild repo, including creator name and gl-perms
@@ -101,7 +101,7 @@ if ( $cmd eq 'push' ) {
         _chdir( $rc{GL_REPO_BASE} );
         my $phy_repos = list_phy_repos(1);
         for my $repo ( @{$phy_repos} ) {
-            my @x = glob("$rc{GL_REPO_BASE}/$repo.git/gl-slave-*.status");
+            my @x = glob("$rc{GL_REPO_BASE}/$repo/gl-slave-*.status");
             print "$repo\n" if @x;
         }
         exit 0;
@@ -111,7 +111,7 @@ if ( $cmd eq 'push' ) {
     # will die if host not in slaves for repo
 
     _chdir( $rc{GL_REPO_BASE} );
-    _chdir("$repo.git");
+    _chdir("$repo");
 
     $host = '*' if $host eq 'all';
     map { print_status($repo, $_) } sort glob("gl-slave-$host.status");

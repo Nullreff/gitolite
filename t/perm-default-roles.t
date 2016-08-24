@@ -49,11 +49,11 @@ cd ..
 
 # make foo/u1/u1r1
 glt clone u1 file:///foo/u1/u1r1
-        /Initialized empty Git repository in .*/foo/u1/u1r1.git//
+        /Initialized empty Git repository in .*/foo/u1/u1r1//
 
 # make bar/u3/u3r1
 glt clone u3 file:///bar/u3/u3r1
-        /Initialized empty Git repository in .*/bar/u3/u3r1.git//
+        /Initialized empty Git repository in .*/bar/u3/u3r1//
 
 cd u3r1
 ";
@@ -74,19 +74,19 @@ cd ..
 
 # make foo/u1/u1r2
 glt clone u1 file:///foo/u1/u1r2
-        /Initialized empty Git repository in .*/foo/u1/u1r2.git//
+        /Initialized empty Git repository in .*/foo/u1/u1r2//
 
 # make bar/u3/u3r2
 glt clone u3 file:///bar/u3/u3r2
-        /Initialized empty Git repository in .*/bar/u3/u3r2.git//
+        /Initialized empty Git repository in .*/bar/u3/u3r2//
 
 cd u3r2
 ";
 
 try "cd $rb; find . -name gl-perms";
 $t = md5sum(sort (lines()));
-cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2.git/gl-perms
-d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2.git/gl-perms
+cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2/gl-perms
+d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2/gl-perms
 ';
 try "cd $od";
 
@@ -114,7 +114,7 @@ gitolite access foo/u1/u1r3 u4 W
 
 # make foo/u1/u1r3
 glt clone u1 file:///foo/u1/u1r3
-        /Initialized empty Git repository in .*/foo/u1/u1r3.git//
+        /Initialized empty Git repository in .*/foo/u1/u1r3//
 
 gitolite access foo/u1/u1r3 u4 W
         ok
@@ -123,17 +123,17 @@ gitolite access foo/u1/u1r3 u4 W
 
 # make bar/u3/u3r3
 glt clone u3 file:///bar/u3/u3r3
-        /Initialized empty Git repository in .*/bar/u3/u3r3.git//
+        /Initialized empty Git repository in .*/bar/u3/u3r3//
 
 cd u3r3
 ";
 
 try "cd $rb; find . -name gl-perms";
 $t = md5sum(sort (lines()));
-cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2.git/gl-perms
-b09856c1addc8e46f6ce0d21a666a633  ./bar/u3/u3r3.git/gl-perms
-d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2.git/gl-perms
-1b5af29692fad391318573bbe633b476  ./foo/u1/u1r3.git/gl-perms
+cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2/gl-perms
+b09856c1addc8e46f6ce0d21a666a633  ./bar/u3/u3r3/gl-perms
+d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2/gl-perms
+1b5af29692fad391318573bbe633b476  ./foo/u1/u1r3/gl-perms
 ';
 try "cd $od";
 
@@ -144,11 +144,11 @@ echo WRITERS \@h1 | glt perms u1 -c foo/u1/u1r1
 
 try "cd $rb; find . -name gl-perms";
 $t = md5sum(sort (lines()));
-cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2.git/gl-perms
-b09856c1addc8e46f6ce0d21a666a633  ./bar/u3/u3r3.git/gl-perms
-f8f0fd8e139ddb64cd5572914b98750a  ./foo/u1/u1r1.git/gl-perms
-d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2.git/gl-perms
-1b5af29692fad391318573bbe633b476  ./foo/u1/u1r3.git/gl-perms
+cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2/gl-perms
+b09856c1addc8e46f6ce0d21a666a633  ./bar/u3/u3r3/gl-perms
+f8f0fd8e139ddb64cd5572914b98750a  ./foo/u1/u1r1/gl-perms
+d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2/gl-perms
+1b5af29692fad391318573bbe633b476  ./foo/u1/u1r3/gl-perms
 ';
 try "cd $od";
 
@@ -159,11 +159,11 @@ echo WRITERS \@h2 | glt perms u1 -c foo/u1/u1r4
 
 try "cd $rb; find . -name gl-perms";
 $t = md5sum(sort (lines()));
-cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2.git/gl-perms
-b09856c1addc8e46f6ce0d21a666a633  ./bar/u3/u3r3.git/gl-perms
-f8f0fd8e139ddb64cd5572914b98750a  ./foo/u1/u1r1.git/gl-perms
-d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2.git/gl-perms
-1b5af29692fad391318573bbe633b476  ./foo/u1/u1r3.git/gl-perms
-df17cd2d47e4d99642d7c5ce4093d115  ./foo/u1/u1r4.git/gl-perms
+cmp $t, 'd41d8cd98f00b204e9800998ecf8427e  ./bar/u3/u3r2/gl-perms
+b09856c1addc8e46f6ce0d21a666a633  ./bar/u3/u3r3/gl-perms
+f8f0fd8e139ddb64cd5572914b98750a  ./foo/u1/u1r1/gl-perms
+d41d8cd98f00b204e9800998ecf8427e  ./foo/u1/u1r2/gl-perms
+1b5af29692fad391318573bbe633b476  ./foo/u1/u1r3/gl-perms
+df17cd2d47e4d99642d7c5ce4093d115  ./foo/u1/u1r4/gl-perms
 ';
 try "cd $od";
