@@ -230,7 +230,7 @@ sub cleanup_conf_line {
         # receiving *any* arg invalidates cache)
         return \@phy_repos if ( @phy_repos and not @_ );
 
-        my $cmd = 'find . ' . ($Gitolite::Rc::rc{REPO_SYMLINKS} || '') . ' -name "*" -prune';
+        my $cmd = 'find . ' . ($Gitolite::Rc::rc{REPO_SYMLINKS} || '') . ' -maxdepth 3 -type d -regextype sed -regex ".*/[0-9a-f]\{2\}/[0-9a-f]\{8\}-[0-9a-f]\{4\}-[0-9a-f]\{4\}-[0-9a-f]\{4\}-[0-9a-f]\{12\}" -prune';
         for my $repo (`$cmd`) {
             chomp($repo);
             $repo =~ s/\.git$//;
